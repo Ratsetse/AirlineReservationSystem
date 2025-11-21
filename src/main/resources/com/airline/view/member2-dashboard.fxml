@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/17.0.2" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.airline.Controller.Member2Controller" fx:id="mainContainer"
+      spacing="20" style="-fx-padding: 20; -fx-background-color: linear-gradient(to bottom, #3498db 0%, #2980b9 100%);">
+
+    <!-- Header -->
+    <HBox spacing="20" alignment="CENTER_LEFT">
+        <VBox spacing="5">
+            <Label text="✈️ MEMBER 2 - FLIGHT MANAGEMENT"
+                   style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            <Label text="Flight Operations &amp; Management Dashboard"
+                   style="-fx-font-size: 14px; -fx-text-fill: #ecf0f1;"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="← Back to Main" onAction="#goBackToMain"
+                style="-fx-background-color: white; -fx-text-fill: #3498db; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 10 20;"/>
+    </HBox>
+
+    <!-- Flight Statistics -->
+    <HBox spacing="20" alignment="CENTER">
+        <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" alignment="CENTER" prefWidth="200">
+            <Label text="Total Flights" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+            <Label fx:id="totalFlightsLabel" text="0" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #3498db;"/>
+        </VBox>
+
+        <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" alignment="CENTER" prefWidth="200">
+            <Label text="Active Reservations" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+            <Label fx:id="activeReservationsLabel" text="0" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #2ecc71;"/>
+        </VBox>
+
+        <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" alignment="CENTER" prefWidth="200">
+            <Label text="Available Seats" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+            <Label fx:id="availableSeatsLabel" text="0" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #e74c3c;"/>
+        </VBox>
+    </HBox>
+
+    <!-- Flight Management Actions -->
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <Label text="Flight Operations:" style="-fx-font-weight: bold; -fx-text-fill: white;"/>
+        <Button text="Add Flight" onAction="#handleAddFlight"
+                style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Update Flight" onAction="#handleUpdateFlight"
+                style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Delete Flight" onAction="#handleDeleteFlight"
+                style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Search Flights" onAction="#handleSearchFlights"
+                style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Refresh" onAction="#handleRefresh"
+                style="-fx-background-color: #8e44ad; -fx-text-fill: white; -fx-font-weight: bold;"/>
+    </HBox>
+
+    <!-- Flight Table -->
+    <VBox spacing="10">
+        <Label text="Flight Management" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+        <TableView fx:id="flightTable" prefHeight="300">
+            <columns>
+                <TableColumn fx:id="colFlightId" text="ID" prefWidth="50"/>
+                <TableColumn fx:id="colFlightCode" text="Flight Code" prefWidth="100"/>
+                <TableColumn fx:id="colSource" text="Source" prefWidth="100" visible="false"/> <!-- Hide since not available -->
+                <TableColumn fx:id="colDestination" text="Destination" prefWidth="100" visible="false"/> <!-- Hide since not available -->
+                <TableColumn fx:id="colDeparture" text="Departure" prefWidth="100" visible="false"/> <!-- Hide since not available -->
+                <TableColumn fx:id="colArrival" text="Arrival" prefWidth="100" visible="false"/> <!-- Hide since not available -->
+                <TableColumn fx:id="colCapacity" text="Total Seats" prefWidth="80"/>
+                <TableColumn fx:id="colAvailableSeats" text="Available" prefWidth="80"/>
+            </columns>
+        </TableView>
+    </VBox>
+
+</VBox>

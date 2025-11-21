@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.cell.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17.0.2" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.airline.Controller.Member7Controller" fx:id="mainContainer"
+      spacing="20" style="-fx-padding: 20; -fx-background-color: linear-gradient(to bottom, #34495e 0%, #2c3e50 100%);">
+
+    <!-- Header -->
+    <HBox spacing="20" alignment="CENTER_LEFT">
+        <VBox spacing="5">
+            <Label text="MEMBER 7 - SECURITY AND COMPLIANCE"
+                   style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            <Label text="Security Management | Compliance Monitoring | Audit Trail | Risk Assessment"
+                   style="-fx-font-size: 14px; -fx-text-fill: #ecf0f1;"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Back to Main" onAction="#goBackToMain"
+                style="-fx-background-color: white; -fx-text-fill: #34495e; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 10 20;"/>
+    </HBox>
+
+    <!-- Security Statistics -->
+    <HBox spacing="20" alignment="CENTER">
+        <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" alignment="CENTER" prefWidth="200">
+            <Label text="Security Score" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+            <Label fx:id="securityScoreLabel" text="0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #27ae60;"/>
+        </VBox>
+
+        <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" alignment="CENTER" prefWidth="200">
+            <Label text="Active Threats" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+            <Label fx:id="activeThreatsLabel" text="0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #e74c3c;"/>
+        </VBox>
+
+        <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" alignment="CENTER" prefWidth="200">
+            <Label text="Compliance Rate" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+            <Label fx:id="complianceRateLabel" text="0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #3498db;"/>
+        </VBox>
+
+        <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" alignment="CENTER" prefWidth="200">
+            <Label text="Audit Events" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+            <Label fx:id="auditEventsLabel" text="0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #f39c12;"/>
+        </VBox>
+    </HBox>
+
+    <!-- Security Actions -->
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <Label text="Security Tools:" style="-fx-font-weight: bold; -fx-text-fill: white;"/>
+        <Button text="Run Security Scan" onAction="#handleSecurityScan"
+                style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="View Audit Log" onAction="#handleViewAuditLog"
+                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Compliance Check" onAction="#handleComplianceCheck"
+                style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Risk Assessment" onAction="#handleRiskAssessment"
+                style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Generate Report" onAction="#handleGenerateSecurityReport"
+                style="-fx-background-color: #9b59b6; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Refresh" onAction="#handleRefresh"
+                style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-weight: bold;"/>
+    </HBox>
+
+    <!-- Security Dashboard -->
+    <HBox spacing="20" alignment="TOP_CENTER">
+        <!-- Left Column - Security Status -->
+        <VBox spacing="15" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" prefWidth="400">
+            <Label text="Security Status Overview" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+            <VBox spacing="10">
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="System Status:" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="systemStatusLabel" text="SECURE" style="-fx-text-fill: #27ae60; -fx-font-weight: bold;"/>
+                </HBox>
+
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Last Scan:" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="lastScanLabel" text="Never" style="-fx-text-fill: #7f8c8d;"/>
+                </HBox>
+
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Data Encryption:" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="encryptionStatusLabel" text="ENABLED" style="-fx-text-fill: #27ae60; -fx-font-weight: bold;"/>
+                </HBox>
+
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Firewall Status:" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="firewallStatusLabel" text="ACTIVE" style="-fx-text-fill: #27ae60; -fx-font-weight: bold;"/>
+                </HBox>
+            </VBox>
+
+            <Separator/>
+
+            <Label text="Quick Actions" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+            <VBox spacing="10">
+                <Button text="Backup Database" onAction="#handleBackupDatabase"
+                        style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                <Button text="Update Security Policies" onAction="#handleUpdatePolicies"
+                        style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                <Button text="Emergency Lockdown" onAction="#handleEmergencyLockdown"
+                        style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            </VBox>
+        </VBox>
+
+        <!-- Right Column - Threat Monitoring -->
+        <VBox spacing="15" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" prefWidth="400">
+            <Label text="Threat Monitoring" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+            <BarChart fx:id="threatChart" prefWidth="380" prefHeight="200">
+                <xAxis>
+                    <CategoryAxis label="Threat Type"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis label="Count"/>
+                </yAxis>
+            </BarChart>
+
+            <Label text="Recent Security Events" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+            <ListView fx:id="securityEventsList" prefHeight="120"/>
+        </VBox>
+    </HBox>
+
+    <!-- Audit Log and Compliance Section -->
+    <HBox spacing="20" alignment="TOP_CENTER">
+        <!-- Audit Log -->
+        <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" prefWidth="500">
+            <Label text="Recent Audit Log" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+            <TableView fx:id="auditTable" prefHeight="250">
+                <columns>
+                    <TableColumn fx:id="colTimestamp" text="Timestamp" prefWidth="150"/>
+                    <TableColumn fx:id="colUser" text="User" prefWidth="120"/>
+                    <TableColumn fx:id="colAction" text="Action" prefWidth="150"/>
+                    <TableColumn fx:id="colStatus" text="Status" prefWidth="80"/>
+                </columns>
+            </TableView>
+
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="Export Audit Log" onAction="#handleExportAuditLog"
+                        style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                <Button text="Clear Old Logs" onAction="#handleClearLogs"
+                        style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            </HBox>
+        </VBox>
+
+        <!-- Compliance Status -->
+        <VBox spacing="15" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" prefWidth="300">
+            <Label text="Compliance Status" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+            <PieChart fx:id="complianceChart" prefWidth="280" prefHeight="200"/>
+
+            <VBox spacing="5">
+                <Label text="Standards Compliance:" style="-fx-font-weight: bold;"/>
+                <ProgressBar fx:id="complianceProgress" prefWidth="280"/>
+                <HBox spacing="10">
+                    <Label text="GDPR:" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="gdprStatusLabel" text="COMPLIANT" style="-fx-text-fill: #27ae60; -fx-font-weight: bold;"/>
+                </HBox>
+                <HBox spacing="10">
+                    <Label text="PCI DSS:" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="pciStatusLabel" text="COMPLIANT" style="-fx-text-fill: #27ae60; -fx-font-weight: bold;"/>
+                </HBox>
+            </VBox>
+        </VBox>
+    </HBox>
+
+</VBox>

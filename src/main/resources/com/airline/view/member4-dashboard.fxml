@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.cell.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17.0.2" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.airline.Controller.Member4Controller" fx:id="mainContainer"
+      spacing="20" style="-fx-padding: 20; -fx-background-color: linear-gradient(to bottom, #e67e22 0%, #d35400 100%);">
+
+    <!-- Header -->
+    <HBox spacing="20" alignment="CENTER_LEFT">
+        <VBox spacing="5">
+            <Label text="MEMBER 4 - CANCELLATION AND REFUNDS"
+                   style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            <Label text="Cancellation Processing | Refund Management | Customer Support"
+                   style="-fx-font-size: 14px; -fx-text-fill: #ecf0f1;"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Back to Main" onAction="#goBackToMain"
+                style="-fx-background-color: white; -fx-text-fill: #e67e22; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 10 20;"/>
+    </HBox>
+
+    <!-- Cancellation Statistics -->
+    <HBox spacing="20" alignment="CENTER">
+        <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" alignment="CENTER" prefWidth="200">
+            <Label text="Total Cancellations" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+            <Label fx:id="totalCancellationsLabel" text="0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #e74c3c;"/>
+        </VBox>
+
+        <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" alignment="CENTER" prefWidth="200">
+            <Label text="Refunds Processed" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+            <Label fx:id="refundAmountLabel" text="0" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #27ae60;"/>
+        </VBox>
+
+        <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" alignment="CENTER" prefWidth="200">
+            <Label text="Pending Refunds" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+            <Label fx:id="pendingRefundsLabel" text="0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #f39c12;"/>
+        </VBox>
+
+        <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" alignment="CENTER" prefWidth="200">
+            <Label text="Refund Rate" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+            <Label fx:id="refundRateLabel" text="0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #3498db;"/>
+        </VBox>
+    </HBox>
+
+    <!-- Search and Actions -->
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <Label text="Search:" style="-fx-font-weight: bold; -fx-text-fill: white;"/>
+        <TextField fx:id="searchField" promptText="Search by reservation ID, customer, or flight" prefWidth="250"/>
+        <Button text="Search" onAction="#handleSearchCancellations"
+                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Process Refund" onAction="#handleProcessCancellation"
+                style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="View Refund History" onAction="#handleViewRefundHistory"
+                style="-fx-background-color: #9b59b6; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Generate Report" onAction="#handleGenerateRefundReport"
+                style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Refresh" onAction="#handleRefresh"
+                style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-weight: bold;"/>
+    </HBox>
+
+    <!-- Refund Processing Section -->
+    <HBox spacing="20" alignment="TOP_CENTER">
+        <!-- Left Column - Cancellation List -->
+        <VBox spacing="15" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" prefWidth="500">
+            <Label text="Pending Cancellations" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+            <TableView fx:id="cancellationTable" prefHeight="300" onMouseClicked="#handleTableClick">
+                <columns>
+                    <TableColumn fx:id="colReservationId" text="Reservation ID" prefWidth="100"/>
+                    <TableColumn fx:id="colFlightCode" text="Flight Code" prefWidth="100"/>
+                    <TableColumn fx:id="colCustomerCode" text="Customer Code" prefWidth="100"/>
+                    <TableColumn fx:id="colFare" text="Fare" prefWidth="80"/>
+                    <TableColumn fx:id="colStatus" text="Status" prefWidth="100"/>
+                    <TableColumn fx:id="colTravelDate" text="Travel Date" prefWidth="100"/>
+                </columns>
+            </TableView>
+        </VBox>
+
+        <!-- Right Column - Refund Processing -->
+        <VBox spacing="15" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" prefWidth="300">
+            <Label text="Refund Processing" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+            <VBox spacing="10">
+                <Label text="Selected Reservation:" style="-fx-font-weight: bold;"/>
+                <Label fx:id="selectedReservationLabel" text="None" style="-fx-text-fill: #7f8c8d;"/>
+
+                <Label text="Original Fare:" style="-fx-font-weight: bold;"/>
+                <Label fx:id="originalFareLabel" text="0.00" style="-fx-text-fill: #2c3e50;"/>
+
+                <Label text="Refund Amount:" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="refundAmountField" promptText="Enter refund amount" style="-fx-background-radius: 5;"/>
+
+                <Label text="Refund Reason:" style="-fx-font-weight: bold;"/>
+                <ComboBox fx:id="refundReasonCombo" promptText="Select reason" style="-fx-background-radius: 5;"/>
+
+                <Label text="Refund Status:" style="-fx-font-weight: bold;"/>
+                <ComboBox fx:id="refundStatusCombo" style="-fx-background-radius: 5;"/>
+
+                <VBox spacing="5">
+                    <Label text="Refund Calculation:" style="-fx-font-weight: bold;"/>
+                    <ProgressBar fx:id="refundProgress" prefWidth="280"/>
+                    <Label fx:id="refundPercentageLabel" text="0 refund" style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d;"/>
+                </VBox>
+
+                <Button text="Process Refund" onAction="#handleProcessCancellation"
+                        style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;"/>
+            </VBox>
+        </VBox>
+    </HBox>
+
+    <!-- Quick Actions -->
+    <HBox spacing="15" alignment="CENTER">
+        <Button text="Auto Process Refunds" onAction="#handleAutoProcessRefunds"
+                style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Send Refund Notifications" onAction="#handleSendNotifications"
+                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Export Refund Report" onAction="#handleExportRefundReport"
+                style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold;"/>
+    </HBox>
+
+</VBox>

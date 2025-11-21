@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.cell.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17.0.2" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.airline.Controller.Member6Controller" fx:id="mainContainer"
+      spacing="20" style="-fx-padding: 20; -fx-background-color: linear-gradient(to bottom, #8e44ad 0%, #9b59b6 100%);">
+
+    <!-- Header -->
+    <HBox spacing="20" alignment="CENTER_LEFT">
+        <VBox spacing="5">
+            <Label text="MEMBER 6 - ADVANCED ANALYTICS"
+                   style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            <Label text="Business Intelligence Dashboard | Real-time Performance Metrics and Analytics"
+                   style="-fx-font-size: 14px; -fx-text-fill: #ecf0f1;"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Back to Main" onAction="#goBackToMain"
+                style="-fx-background-color: white; -fx-text-fill: #8e44ad; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 10 20;"/>
+    </HBox>
+
+    <!-- Analytics Statistics -->
+    <HBox spacing="20" alignment="CENTER">
+        <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" alignment="CENTER" prefWidth="200">
+            <Label text="Total Revenue" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+            <Label fx:id="totalRevenueLabel" text="0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #27ae60;"/>
+        </VBox>
+
+        <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" alignment="CENTER" prefWidth="200">
+            <Label text="Total Bookings" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+            <Label fx:id="totalBookingsLabel" text="0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #3498db;"/>
+        </VBox>
+
+        <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" alignment="CENTER" prefWidth="200">
+            <Label text="Avg Booking Value" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+            <Label fx:id="avgBookingValueLabel" text="0" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #f39c12;"/>
+        </VBox>
+
+        <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" alignment="CENTER" prefWidth="200">
+            <Label text="Occupancy Rate" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+            <Label fx:id="occupancyRateLabel" text="0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #9b59b6;"/>
+        </VBox>
+    </HBox>
+
+    <HBox spacing="20" alignment="CENTER">
+        <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" alignment="CENTER" prefWidth="200">
+            <Label text="Customer Satisfaction" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+            <Label fx:id="customerSatisfactionLabel" text="0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2ecc71;"/>
+        </VBox>
+
+        <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" alignment="CENTER" prefWidth="200">
+            <Label text="Cancellation Rate" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+            <Label fx:id="cancellationRateLabel" text="0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #e74c3c;"/>
+        </VBox>
+
+        <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" alignment="CENTER" prefWidth="200">
+            <Label text="Repeat Customers" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+            <Label fx:id="repeatCustomersLabel" text="0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #1abc9c;"/>
+        </VBox>
+
+        <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" alignment="CENTER" prefWidth="200">
+            <Label text="Revenue Growth" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+            <Label fx:id="revenueGrowthLabel" text="0" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #e67e22;"/>
+        </VBox>
+    </HBox>
+
+    <!-- Analytics Actions -->
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <Label text="Analytics Tools:" style="-fx-font-weight: bold; -fx-text-fill: white;"/>
+        <Button text="Comprehensive Report" onAction="#handleGenerateComprehensiveReport"
+                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Revenue Analysis" onAction="#handleRevenueAnalysis"
+                style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Customer Analytics" onAction="#handleCustomerAnalytics"
+                style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Export Data" onAction="#handleExportData"
+                style="-fx-background-color: #9b59b6; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Refresh Analytics" onAction="#handleRefreshAnalytics"
+                style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <ProgressIndicator fx:id="loadingIndicator" visible="false" style="-fx-progress-color: white;"/>
+    </HBox>
+
+    <!-- Custom Report Section -->
+    <VBox spacing="15" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;">
+        <Label text="Custom Report Generator" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+        <HBox spacing="15" alignment="CENTER_LEFT">
+            <Label text="Start Date:" style="-fx-font-weight: bold;"/>
+            <DatePicker fx:id="startDatePicker" prefWidth="150"/>
+            <Label text="End Date:" style="-fx-font-weight: bold;"/>
+            <DatePicker fx:id="endDatePicker" prefWidth="150"/>
+            <Label text="Report Type:" style="-fx-font-weight: bold;"/>
+            <ComboBox fx:id="reportTypeCombo" prefWidth="150"/>
+            <Button fx:id="generateReportButton" text="Generate Custom Report" onAction="#handleGenerateCustomReport"
+                    style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;"/>
+        </HBox>
+    </VBox>
+
+    <!-- Charts Section -->
+    <HBox spacing="20" alignment="TOP_CENTER">
+        <!-- Revenue Charts -->
+        <VBox spacing="15" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" prefWidth="400">
+            <Label text="Financial Analytics" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+            <BarChart fx:id="revenueChart" prefWidth="380" prefHeight="200">
+                <xAxis>
+                    <CategoryAxis label="Month"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis label="Revenue"/>
+                </yAxis>
+            </BarChart>
+            <PieChart fx:id="revenuePieChart" prefWidth="380" prefHeight="200"/>
+        </VBox>
+
+        <!-- Performance Charts -->
+        <VBox spacing="15" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" prefWidth="400">
+            <Label text="Performance Metrics" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+            <BarChart fx:id="bookingChart" prefWidth="380" prefHeight="200">
+                <xAxis>
+                    <CategoryAxis label="Flight Code"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis label="Bookings"/>
+                </yAxis>
+            </BarChart>
+            <LineChart fx:id="trendChart" prefWidth="380" prefHeight="200">
+                <xAxis>
+                    <CategoryAxis label="Date"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis label="Count/Revenue"/>
+                </yAxis>
+            </LineChart>
+        </VBox>
+    </HBox>
+
+    <!-- Performance Table -->
+    <VBox spacing="10">
+        <Label text="Flight Performance Ranking" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+        <TableView fx:id="performanceTable" prefHeight="300" style="-fx-background-color: white; -fx-background-radius: 10;">
+            <columns>
+                <TableColumn fx:id="colFlightCode" text="Flight Code" prefWidth="100"/>
+                <TableColumn fx:id="colBookings" text="Bookings" prefWidth="80"/>
+                <TableColumn fx:id="colRevenue" text="Revenue" prefWidth="100"/>
+                <TableColumn fx:id="colOccupancy" text="Occupancy Rate" prefWidth="120"/>
+            </columns>
+        </TableView>
+    </VBox>
+
+</VBox>

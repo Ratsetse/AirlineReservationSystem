@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.airline.Controller.FlightController" spacing="15"
+      style="-fx-padding: 20; -fx-background-color: #f8f9fa;">
+
+    <Text text="Flight Management System" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-fill: #2c3e50;"/>
+
+    <Text text="Navigation Controls" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-fill: #34495e;"/>
+
+    <!-- Navigation Buttons -->
+    <HBox spacing="15" alignment="CENTER">
+        <Button text="First" onAction="#handleFirst"
+                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20;"/>
+        <Button text="Previous" onAction="#handlePrevious"
+                style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20;"/>
+        <Button text="Next" onAction="#handleNext"
+                style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20;"/>
+        <Button text="Last" onAction="#handleLast"
+                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20;"/>
+    </HBox>
+
+    <Text text="Flight Operations" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-fill: #34495e;"/>
+
+    <!-- Operation Buttons -->
+    <HBox spacing="15" alignment="CENTER">
+        <Button text="Add New Flight" onAction="#handleAdd"
+                style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20;"/>
+        <Button text="Update Flight" onAction="#handleUpdate"
+                style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20;"/>
+        <Button text="Delete Flight" onAction="#handleDelete"
+                style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20;"/>
+    </HBox>
+
+    <!-- Data Management Buttons -->
+    <HBox spacing="15" alignment="CENTER">
+        <Button text="Save Data" onAction="#handleSave"
+                style="-fx-background-color: #9b59b6; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20;"/>
+        <Button text="Show All Flights" onAction="#handleShow"
+                style="-fx-background-color: #1abc9c; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20;"/>
+    </HBox>
+
+    <!-- Status Area -->
+    <TextArea fx:id="statusArea" prefHeight="150" prefWidth="500"
+              style="-fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-padding: 10;"
+              promptText="Operation messages will appear here..."/>
+</VBox>

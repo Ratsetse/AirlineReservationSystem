@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/17.0.2"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.airline.Controller.LoginController"
+      spacing="20"
+      style="-fx-background-color: #3498db; -fx-padding: 40;"
+      prefWidth="500" prefHeight="700">
+
+    <!-- Header -->
+    <Label text="SKYLINE AIRLINES"
+           style="-fx-text-fill: white; -fx-font-size: 28px; -fx-font-weight: bold;"/>
+
+    <Label text="Reservation System"
+           style="-fx-text-fill: white; -fx-font-size: 14px;"/>
+
+    <!-- Login Card -->
+    <VBox spacing="15" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 30;">
+        <Label text="Login" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+        <!-- User Type -->
+        <Label text="Login As:"/>
+        <ComboBox fx:id="userTypeComboBox" prefWidth="300"/>
+
+        <!-- Username -->
+        <Label text="Username:"/>
+        <TextField fx:id="usernameField" promptText="Enter username"/>
+
+        <!-- Password -->
+        <Label text="Password:"/>
+        <PasswordField fx:id="passwordField" promptText="Enter password"/>
+
+        <!-- Remember Me -->
+        <CheckBox fx:id="rememberMeCheckBox" text="Remember me"/>
+
+        <!-- Login Button -->
+        <Button fx:id="loginButton" text="Sign In" onAction="#handleLogin"
+                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-pref-height: 40;"/>
+
+        <!-- Action Buttons -->
+        <HBox spacing="10">
+            <Button text="Demo Login" onAction="#handleDemoLogin"
+                    style="-fx-background-color: #f39c12; -fx-text-fill: white;"/>
+            <Button text="Guest Access" onAction="#handleGuestAccess"
+                    style="-fx-background-color: #95a5a6; -fx-text-fill: white;"/>
+        </HBox>
+
+        <!-- Footer Links -->
+        <HBox spacing="20">
+            <Button text="Sign Up" onAction="#handleSignUp"
+                    style="-fx-background-color: transparent; -fx-text-fill: #3498db;"/>
+            <Button text="Forgot Password?" onAction="#handleForgotPassword"
+                    style="-fx-background-color: transparent; -fx-text-fill: #3498db;"/>
+        </HBox>
+    </VBox>
+</VBox>

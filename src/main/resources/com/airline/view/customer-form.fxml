@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.airline.Controller.CustomerController" spacing="20"
+      style="-fx-background-color: linear-gradient(to bottom, #667eea 0%, #764ba2 100%); -fx-padding: 20;">
+
+    <!-- Header -->
+    <Label text="👥 CUSTOMER MANAGEMENT"
+           style="-fx-text-fill: white; -fx-font-size: 28px; -fx-font-weight: bold; -fx-alignment: center;"/>
+
+    <HBox spacing="20" alignment="TOP_CENTER">
+        <!-- Left Column - Form -->
+        <VBox spacing="15" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 25;"
+              prefWidth="400">
+            <Label text="Add New Customer" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+            <GridPane hgap="10" vgap="15">
+                <Label text="Customer Name:" GridPane.columnIndex="0" GridPane.rowIndex="0"
+                       style="-fx-font-weight: bold;"/>
+                <TextField fx:id="custName" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="200"/>
+
+                <Label text="Father's Name:" GridPane.columnIndex="0" GridPane.rowIndex="1"
+                       style="-fx-font-weight: bold;"/>
+                <TextField fx:id="fatherName" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="200"/>
+
+                <Label text="Gender:" GridPane.columnIndex="0" GridPane.rowIndex="2"
+                       style="-fx-font-weight: bold;"/>
+                <ComboBox fx:id="gender" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="200"/>
+
+                <Label text="Date of Birth:" GridPane.columnIndex="0" GridPane.rowIndex="3"
+                       style="-fx-font-weight: bold;"/>
+                <DatePicker fx:id="dateOfBirth" GridPane.columnIndex="1" GridPane.rowIndex="3" prefWidth="200"/>
+
+                <Label text="Travel Date:" GridPane.columnIndex="0" GridPane.rowIndex="4"
+                       style="-fx-font-weight: bold;"/>
+                <DatePicker fx:id="travelDate" GridPane.columnIndex="1" GridPane.rowIndex="4" prefWidth="200"/>
+
+                <Label text="Address:" GridPane.columnIndex="0" GridPane.rowIndex="5"
+                       style="-fx-font-weight: bold;"/>
+                <TextArea fx:id="address" GridPane.columnIndex="1" GridPane.rowIndex="5" prefWidth="200" prefHeight="80"/>
+
+                <Label text="Telephone:" GridPane.columnIndex="0" GridPane.rowIndex="6"
+                       style="-fx-font-weight: bold;"/>
+                <TextField fx:id="telephone" GridPane.columnIndex="1" GridPane.rowIndex="6" prefWidth="200"/>
+
+                <Label text="Profession:" GridPane.columnIndex="0" GridPane.rowIndex="7"
+                       style="-fx-font-weight: bold;"/>
+                <TextField fx:id="profession" GridPane.columnIndex="1" GridPane.rowIndex="7" prefWidth="200"/>
+
+                <Label text="Concession:" GridPane.columnIndex="0" GridPane.rowIndex="8"
+                       style="-fx-font-weight: bold;"/>
+                <ComboBox fx:id="concession" GridPane.columnIndex="1" GridPane.rowIndex="8" prefWidth="200"/>
+            </GridPane>
+
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="💾 Save Customer" fx:id="saveButton" onAction="#saveCustomer"
+                        style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 10 20;"/>
+                <Button text="🗑️ Clear" onAction="#clearForm"
+                        style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 10 20;"/>
+                <Button text="🔍 Search" onAction="#searchCustomers"
+                        style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 10 20;"/>
+            </HBox>
+        </VBox>
+
+        <!-- Right Column - Customer List -->
+        <VBox spacing="15" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 25;"
+              prefWidth="500">
+            <Label text="Recent Customers" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+            <TableView fx:id="customerTable" prefHeight="400">
+                <columns>
+                    <TableColumn fx:id="colCode" text="Code" prefWidth="60"/>
+                    <TableColumn fx:id="colName" text="Name" prefWidth="120"/>
+                    <TableColumn fx:id="colPhone" text="Phone" prefWidth="100"/>
+                    <TableColumn fx:id="colProfession" text="Profession" prefWidth="100"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </HBox>
+
+</VBox>

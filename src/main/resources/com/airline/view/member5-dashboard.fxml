@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.cell.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17.0.2" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.airline.Controller.Member5Controller" fx:id="mainContainer"
+      spacing="20" style="-fx-padding: 20; -fx-background-color: linear-gradient(to bottom, #9b59b6 0%, #8e44ad 100%);">
+
+    <!-- Header -->
+    <HBox spacing="20" alignment="CENTER_LEFT">
+        <VBox spacing="5">
+            <Label text="MEMBER 5 - FARE MANAGEMENT"
+                   style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            <Label text="Dynamic Pricing | Fare Optimization | Revenue Management"
+                   style="-fx-font-size: 14px; -fx-text-fill: #ecf0f1;"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Back to Main" onAction="#goBackToMain"
+                style="-fx-background-color: white; -fx-text-fill: #9b59b6; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 10 20;"/>
+    </HBox>
+
+    <!-- Fare Statistics -->
+    <HBox spacing="20" alignment="CENTER">
+        <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" alignment="CENTER" prefWidth="200">
+            <Label text="Total Flights" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+            <Label fx:id="totalFlightsLabel" text="0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #3498db;"/>
+        </VBox>
+
+        <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" alignment="CENTER" prefWidth="200">
+            <Label text="Avg Executive Fare" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+            <Label fx:id="avgExecutiveFareLabel" text="0" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #e74c3c;"/>
+        </VBox>
+
+        <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" alignment="CENTER" prefWidth="200">
+            <Label text="Avg Economy Fare" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+            <Label fx:id="avgEconomyFareLabel" text="0" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #27ae60;"/>
+        </VBox>
+
+        <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" alignment="CENTER" prefWidth="200">
+            <Label text="Revenue Potential" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+            <Label fx:id="revenuePotentialLabel" text="0" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #f39c12;"/>
+        </VBox>
+    </HBox>
+
+    <!-- Fare Management Actions -->
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <Label text="Fare Tools:" style="-fx-font-weight: bold; -fx-text-fill: white;"/>
+        <Button text="Update Fares" onAction="#handleUpdateFares"
+                style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Apply Discount" onAction="#handleApplyDiscount"
+                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Seasonal Pricing" onAction="#handleSeasonalPricing"
+                style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Fare Analysis" onAction="#handleGenerateFareReport"
+                style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Refresh" onAction="#handleRefresh"
+                style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-weight: bold;"/>
+    </HBox>
+
+    <!-- Fare Management Section -->
+    <HBox spacing="20" alignment="TOP_CENTER">
+        <!-- Left Column - Fare Table -->
+        <VBox spacing="15" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" prefWidth="500">
+            <Label text="Flight Fare Management" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Search:" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="searchField" promptText="Search by flight code or name" prefWidth="200"/>
+                <Button text="Search" onAction="#handleSearchFares"
+                        style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            </HBox>
+
+            <TableView fx:id="fareTable" prefHeight="300" onMouseClicked="#handleTableClick">
+                <columns>
+                    <TableColumn fx:id="colFlightCode" text="Flight Code" prefWidth="100"/>
+                    <TableColumn fx:id="colFlightName" text="Flight Name" prefWidth="150"/>
+                    <TableColumn fx:id="colExecutiveFare" text="Executive" prefWidth="90"/>
+                    <TableColumn fx:id="colEconomyFare" text="Economy" prefWidth="90"/>
+                    <TableColumn fx:id="colBusinessFare" text="Business" prefWidth="90"/>
+                    <TableColumn fx:id="colProfitMargin" text="Margin" prefWidth="80"/>
+                </columns>
+            </TableView>
+        </VBox>
+
+        <!-- Right Column - Fare Editor -->
+        <VBox spacing="15" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" prefWidth="300">
+            <Label text="Fare Editor" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+            <VBox spacing="10">
+                <Label text="Selected Flight:" style="-fx-font-weight: bold;"/>
+                <Label fx:id="selectedFlightLabel" text="None" style="-fx-text-fill: #7f8c8d;"/>
+
+                <Label text="Executive Fare:" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="executiveFareField" promptText="Enter executive fare" style="-fx-background-radius: 5;"/>
+
+                <Label text="Economy Fare:" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="economyFareField" promptText="Enter economy fare" style="-fx-background-radius: 5;"/>
+
+                <Label text="Business Fare:" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="businessFareField" promptText="Enter business fare" style="-fx-background-radius: 5;"/>
+
+                <VBox spacing="5">
+                    <Label text="Pricing Strategy:" style="-fx-font-weight: bold;"/>
+                    <ComboBox fx:id="pricingStrategyCombo" style="-fx-background-radius: 5;"/>
+                </VBox>
+
+                <VBox spacing="5">
+                    <Label text="Demand Level:" style="-fx-font-weight: bold;"/>
+                    <ProgressBar fx:id="demandProgress" prefWidth="280"/>
+                    <Label fx:id="demandLevelLabel" text="Medium Demand" style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d;"/>
+                </VBox>
+
+                <Button text="Update Fares" onAction="#handleUpdateFares"
+                        style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;"/>
+            </VBox>
+        </VBox>
+    </HBox>
+
+    <!-- Quick Pricing Actions -->
+    <HBox spacing="15" alignment="CENTER">
+        <Button text="Apply 10 Discount" onAction="#handleApplyDiscount10"
+                style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Increase Premium 15" onAction="#handleIncreasePremium15"
+                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Weekend Pricing" onAction="#handleWeekendPricing"
+                style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Reset to Base" onAction="#handleResetToBase"
+                style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-weight: bold;"/>
+    </HBox>
+
+</VBox>

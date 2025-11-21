@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.airline.Controller.ReservationController" spacing="20"
+      style="-fx-background-color: linear-gradient(to bottom, #667eea 0%, #764ba2 100%); -fx-padding: 20;">
+
+    <!-- Header -->
+    <Label text="🎫 MAKE RESERVATION"
+           style="-fx-text-fill: white; -fx-font-size: 28px; -fx-font-weight: bold; -fx-alignment: center;"/>
+
+    <!-- Reservation Form -->
+    <VBox spacing="15" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 25;">
+        <Label text="New Reservation" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+        <GridPane hgap="10" vgap="15">
+            <Label text="Flight Code:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
+            <TextField fx:id="flightCodeField" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="200" promptText="e.g., AI101"/>
+
+            <Label text="Customer Code:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
+            <HBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <TextField fx:id="customerCodeField" prefWidth="150" promptText="e.g., 1"/>
+                <Button text="🔍 Search" fx:id="searchCustomerButton" onAction="#handleSearchCustomer"
+                        style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;"/>
+            </HBox>
+
+            <Label text="Customer Name:" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
+            <TextField fx:id="customerNameField" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="200" editable="false" style="-fx-background-color: #f8f9fa;"/>
+
+            <Label text="Seat Class:" GridPane.columnIndex="0" GridPane.rowIndex="3" style="-fx-font-weight: bold;"/>
+            <ComboBox fx:id="seatClassCombo" GridPane.columnIndex="1" GridPane.rowIndex="3" prefWidth="200"/>
+
+            <Label text="Seat Number:" GridPane.columnIndex="0" GridPane.rowIndex="4" style="-fx-font-weight: bold;"/>
+            <TextField fx:id="seatNumberField" GridPane.columnIndex="1" GridPane.rowIndex="4" prefWidth="200" promptText="e.g., 15"/>
+
+            <Label text="Travel Date:" GridPane.columnIndex="0" GridPane.rowIndex="5" style="-fx-font-weight: bold;"/>
+            <DatePicker fx:id="travelDateField" GridPane.columnIndex="1" GridPane.rowIndex="5" prefWidth="200"/>
+
+            <Label text="Status:" GridPane.columnIndex="0" GridPane.rowIndex="6" style="-fx-font-weight: bold;"/>
+            <ComboBox fx:id="statusCombo" GridPane.columnIndex="1" GridPane.rowIndex="6" prefWidth="200"/>
+
+            <Label text="Fare ($):" GridPane.columnIndex="0" GridPane.rowIndex="7" style="-fx-font-weight: bold;"/>
+            <TextField fx:id="fareField" GridPane.columnIndex="1" GridPane.rowIndex="7" prefWidth="200" promptText="e.g., 150.00"/>
+        </GridPane>
+
+        <HBox spacing="10" alignment="CENTER">
+            <Button text="✅ Make Reservation" fx:id="makeReservationButton" onAction="#handleMakeReservation"
+                    style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 10 20;"/>
+            <Button text="❌ Cancel Reservation" fx:id="cancelReservationButton" onAction="#handleCancelReservation"
+                    style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 10 20;"/>
+            <Button text="📋 Show All" fx:id="showReservationsButton" onAction="#handleShowReservations"
+                    style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 10 20;"/>
+            <Button text="🗑️ Clear Form" onAction="#clearForm"
+                    style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 10 20;"/>
+        </HBox>
+    </VBox>
+
+    <!-- Reservations Table -->
+    <VBox spacing="15" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 25;">
+        <Label text="Recent Reservations" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+        <TableView fx:id="reservationTable" prefHeight="300" onMouseClicked="#handleTableClick">
+            <columns>
+                <TableColumn fx:id="reservationIdColumn" text="ID" prefWidth="60"/>
+                <TableColumn fx:id="flightCodeColumn" text="Flight" prefWidth="80"/>
+                <TableColumn fx:id="customerCodeColumn" text="Cust Code" prefWidth="80"/>
+                <TableColumn fx:id="seatClassColumn" text="Class" prefWidth="70"/>
+                <TableColumn fx:id="seatNumberColumn" text="Seat" prefWidth="60"/>
+                <TableColumn fx:id="travelDateColumn" text="Travel Date" prefWidth="100"/>
+                <TableColumn fx:id="statusColumn" text="Status" prefWidth="90"/>
+                <TableColumn fx:id="fareColumn" text="Fare" prefWidth="80"/>
+            </columns>
+        </TableView>
+    </VBox>
+
+</VBox>
