@@ -121,6 +121,7 @@ public class CustomerController implements Initializable {
         }
     }
 
+
     @FXML
     private void clearForm() {
         custName.clear();
